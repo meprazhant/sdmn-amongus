@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ExternalLink, AlertTriangle, Play, Twitter, Clock } from 'lucide-react';
+import { ExternalLink, AlertTriangle, Play, Twitter, Clock, Github } from 'lucide-react';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 
@@ -45,16 +45,37 @@ export default function Dashboard() {
         return () => clearInterval(timer);
     }, [latestVideo]);
 
-    const tweetText = timeSince
-        ? `It's been ${timeSince.days} days since the last Among Us video. @Sidemen bring it back! #SidemenAmongUs`
-        : "Bring back Among Us! @Sidemen #SidemenAmongUs";
+    const [totalStars, setTotalStars] = useState(0);
 
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    useEffect(() => {
+        fetch('https://api.github.com/repos/meprazhant/sdmn-amongus')
+            .then((res) => res.json())
+            .then((data) => {
+                setTotalStars(data.stargazers_count);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, []);
+
 
     if (loading) return <div className="animate-pulse text-crewmate font-bold tracking-widest text-2xl p-12 text-center">SCANNING COMMS CHANNELS...</div>;
 
     return (
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 max-w-6xl mx-auto">
+            <div className="absolute top-2 right-2 flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
+                <a
+                    href="https://github.com/meprazhant/sdmn-amongus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-white "
+                >
+                    <Github className="w-6 h-6" />
+                    <span className="flex items-center gap-1">
+                        ⭐ {totalStars || 0}
+                    </span>
+                </a>
+            </div>
 
             {/* Countdown Section */}
             <div className="text-center space-y-6">

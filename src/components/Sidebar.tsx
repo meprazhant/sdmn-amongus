@@ -12,6 +12,7 @@ import {
     DollarSign,
     Menu,
     X,
+    Github,
 } from "lucide-react";
 import { useEffect } from "react";
 
@@ -49,10 +50,10 @@ export default function Sidebar({
             {/* Header */}
             <div className="p-8 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-imposter rounded-xl flex items-center justify-center glow-imposter">
+                    <div className="w-8 h-8 bg-imposter rounded-xl flex items-center justify-center glow-imposter">
                         <Gamepad2 className="text-white w-6 h-6" />
                     </div>
-                    <span className="text-xl font-bold tracking-tighter">
+                    <span className="text-sm font-bold tracking-tighter">
                         SDMN AMONGUS
                     </span>
                 </div>
@@ -67,7 +68,7 @@ export default function Sidebar({
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
+            <nav className="flex-1 px-4 pt-1 py-4 space-y-2 overflow-y-auto">
                 {navItems.map((item) => (
                     <Link
                         key={item.name}
@@ -80,6 +81,8 @@ export default function Sidebar({
                     </Link>
                 ))}
             </nav>
+
+
 
             {/* Donation */}
             <div className="p-4 border-t border-white/10 mt-auto">
@@ -103,6 +106,9 @@ export default function Sidebar({
                     </div>
                 </div>
             </div>
+            <a href="https://www.reddit.com/r/Sidemen/comments/1flz5hp/moresidemen_among_us_stats_this_took_me_months_to/" target="_blank" rel="noopener noreferrer" className="p-2 pl-5 pb-2 text-blue-600 py-0">
+                <span className="text-blue-600">Database Credit</span>
+            </a>
         </>
     );
 
